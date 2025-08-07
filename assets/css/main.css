@@ -1,11 +1,14 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,600italic,700");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap");
 @import url("fontawesome-all.min.css");
 
-/*
-	Miniport by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
-*/
+:root {
+    --primary-color: #3d99f5;
+    --background-color: #f8fafc;
+    --text-primary: #1e293b;
+    --text-secondary: #475569;
+    --border-color: #e2e8f0;
+}
 
 html, body, div, span, applet, object,
 iframe, h1, h2, h3, h4, h5, h6, p, blockquote,
@@ -23,11 +26,13 @@ section, summary, time, mark, audio, video {
 	border: 0;
 	font-size: 100%;
 	font: inherit;
-	vertical-align: baseline;}
+	vertical-align: baseline;
+}
 
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
-	display: block;}
+	display: block;
+}
 
 body {
 	line-height: 1;
@@ -1630,6 +1635,7 @@ input, select, textarea {
 		.image img {
 			display: block;
 			width: 100%;
+			max-height: 500px;
 		}
 
 		.image.fit {
@@ -2098,6 +2104,13 @@ input, select, textarea {
 					border-top: solid 0.6em #282828;
 				}
 
+.demo-bg {
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: contain;
+	height: 100%;
+}
+
 /* Articles */
 
 	body > article {
@@ -2132,6 +2145,7 @@ input, select, textarea {
 			#top p a {
 				color: inherit;
 			}
+	
 
 	#contact footer {
 		font-size: 0.9em;
@@ -2146,6 +2160,7 @@ input, select, textarea {
 		list-style: none;
 		padding-left: 0;
 		margin-bottom: 0;
+		text-align: center;
 	}
 
 		#copyright li {
@@ -2174,6 +2189,21 @@ input, select, textarea {
 			#copyright a:hover {
 				color: #777;
 			}
+/* New Styles from HTML */
+body {
+    font-family: "Inter", sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-primary);
+}
+.btn-primary {
+    @apply bg-[var(--primary-color)] text-white hover:bg-opacity-90 transition-colors;
+}
+.section-title {
+    @apply text-2xl font-bold text-[var(--text-primary)] mb-4;
+}
+.section-content {
+    @apply text-base text-[var(--text-secondary)] leading-relaxed;
+}
 
 /* Large */
 

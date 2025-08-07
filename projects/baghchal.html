@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Bagh-Chal | Bhishan Pangeni</title>
+    <!-- Tailwind CSS JIT CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,600,600italic,700" rel="stylesheet" />
+    <!-- Material Icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+    <!-- Font Awesome (for icons) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
+
+    <style type="text/tailwindcss">
+        /* Base and Reset Styles */
+        :root {
+            --primary-color: #3d99f5;
+            --background-color: #f8fafc;
+            --text-primary: #1e293b;
+            --text-secondary: #475569;
+            --border-color: #e2e8f0;
+        }
+
+        /* Basic Resets */
+        html, body, div, span, h1, h2, p, a, ul, li, footer, header, nav, section {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
+        }
+
+        body {
+            line-height: 1;
+            font-family: "Inter", sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-primary);
+        }
+
+        ol, ul {
+            list-style: none;
+        }
+        
+        html {
+            box-sizing: border-box;
+        }
+
+        *, *:before, *:after {
+            box-sizing: inherit;
+        }
+
+        /* Custom Project Showcase Styles */
+        .section-title {
+            @apply text-2xl font-bold text-[var(--text-primary)] mb-4;
+        }
+
+        .section-content {
+            @apply text-base text-[var(--text-secondary)] leading-relaxed;
+        }
+
+        .button-primary {
+             @apply inline-block bg-[var(--primary-color)] text-white font-semibold py-2 px-6 rounded-lg hover:bg-opacity-90 transition-colors text-center no-underline;
+        }
+        
+        .button-secondary {
+            @apply inline-block bg-gray-800 text-white font-semibold py-2 px-6 rounded-lg hover:bg-gray-700 transition-colors text-center no-underline;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="min-h-screen">
+        <!-- Sticky Header -->
+        <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-[var(--border-color)]">
+            <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+                <div class="flex items-center gap-3">
+                    <span class="material-icons text-[var(--primary-color)] text-3xl"> aod </span>
+                    <h1 class="text-xl font-bold text-[var(--text-primary)]">Bhishan Pangeni</h1>
+                </div>
+                <div class="hidden md:flex items-center gap-8">
+                    <a href="../index.html#top" class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors">Home</a>
+                    <a href="../index.html#work" class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors">Skills</a>
+                    <a href="../index.html#portfolio" class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors">Projects</a>
+                    <a href="../index.html#resume" class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors">Resume</a>
+                    <a href="../index.html#contact" class="text-sm font-medium text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors">Contact</a>
+                </div>
+                <!-- Mobile Menu Button -->
+                <button class="md:hidden flex items-center justify-center p-2 rounded-md hover:bg-gray-100">
+                    <span class="material-icons text-[var(--text-secondary)]"> menu </span>
+                </button>
+            </nav>
+        </header>
+
+        <!-- Main Content -->
+        <main class="container mx-auto px-6 py-12">
+            <div class="max-w-4xl mx-auto">
+                
+                <section class="mb-8 text-center">
+                    <h1 class="text-4xl md:text-5xl font-black text-[var(--text-primary)] mb-4">Bagh-Chal: Digital Tiger and Goat Board Game</h1>
+                    <p class="section-content max-w-3xl mx-auto">
+                        Bagh-Chal is a digital adaptation of the traditional Nepali strategy board game, Tiger and Goat. This project recreates the classic two-player experience with interactive graphics, authentic rules, and a user-friendly interface, making a piece of cultural heritage accessible to everyone.
+                    </p>
+                </section>
+
+                <section class="mb-12" id="visuals">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <img src="../images/BaghChal.gif" alt="Animated GIF of the Bagh-Chal game" class="w-full h-auto rounded-md object-contain" onerror="this.onerror=null;this.src='https://placehold.co/1280x720/e2e8f0/475569?text=Bagh-Chal+Project';this.alt='Placeholder image for Bagh-Chal project';">
+                    </div>
+                </section>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <section class="bg-white p-8 rounded-lg shadow-sm" id="tech-skills">
+                        <h2 class="section-title">Key Technologies/Skills</h2>
+                        <ul class="section-content list-disc list-inside space-y-2">
+                            <li>Python 3.9+</li>
+                            <li>Pygame (Game Development)</li>
+                            <li>Object-Oriented Programming</li>
+                            <li>UI/UX Design</li>
+                            <li>Python Packaging (PyPI)</li>
+                            <li>Open Source Collaboration</li>
+                        </ul>
+                    </section>
+                    <section class="bg-white p-8 rounded-lg shadow-sm" id="learnings">
+                        <h2 class="section-title">What I Accomplished</h2>
+                        <ul class="section-content list-disc list-inside space-y-2">
+                           <li>Designed and implemented a complete turn-based board game from scratch.</li>
+                           <li>Developed a visually engaging interface with custom artwork and controls.</li>
+                           <li>Mastered Pygame for rendering, event handling, and state management.</li>
+                           <li>Packaged the project for easy distribution via PyPI.</li>
+                           <li>Digitally preserved and shared a traditional Nepali game.</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <section class="my-12 bg-white p-8 rounded-lg shadow-sm" id="features">
+                    <h2 class="section-title">Notable Features</h2>
+                    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 section-content">
+                        <div class="flex items-start gap-4">
+                            <span class="material-icons text-[var(--primary-color)] mt-1"> smart_toy </span>
+                            <div>
+                                <h3 class="font-semibold mb-1">Authentic Gameplay</h3>
+                                <p>A faithful recreation of Bagh-Chal’s rules and strategic depth.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="material-icons text-[var(--primary-color)] mt-1"> palette </span>
+                            <div>
+                                <h3 class="font-semibold mb-1">Custom Graphics</h3>
+                                <p>Interactive board with real-time feedback and original artwork.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <span class="material-icons text-[var(--primary-color)] mt-1"> get_app </span>
+                            <div>
+                                <h3 class="font-semibold mb-1">Easy Installation</h3>
+                                <p>Playable via a simple pip command: <code>pip install PlayBaghChal</code></p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <section class="bg-white p-8 rounded-lg shadow-sm" id="improvements">
+                        <h2 class="section-title">Future Improvements</h2>
+                        <ul class="section-content list-disc list-inside space-y-2">
+                            <li>Add an AI opponent for single-player mode.</li>
+                            <li>Implement online multiplayer support.</li>
+                            <li>Enhance animations and add sound effects.</li>
+                            <li>Create a mobile-friendly or web-based version.</li>
+                        </ul>
+                    </section>
+                    <section class="bg-[var(--primary-color)] text-white p-8 rounded-lg shadow-sm" id="highlights">
+                        <h2 class="text-2xl font-bold mb-4">Project Highlights</h2>
+                        <ul class="list-disc list-inside space-y-2 text-base leading-relaxed">
+                            <li>Application of game development and UI/UX design.</li>
+                            <li>Demonstrates skills in Python, Pygame, and packaging.</li>
+                            <li>Focus on cultural preservation and open source.</li>
+                        </ul>
+                    </section>
+                </div>
+
+                <!-- Action Buttons -->
+                <section class="mt-12 text-center">
+                     <div class="flex justify-center items-center gap-4">
+                        <a href="https://github.com/bhishanP/PlayBaghChal" target="_blank" rel="noopener" class="button-primary">
+                            View on GitHub
+                        </a>
+                        <a href="../index.html#portfolio" class="button-secondary">
+                            &#8592; Back to Portfolio
+                        </a>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="bg-white mt-16 border-t border-[var(--border-color)]" id="contact">
+            <div class="container mx-auto px-6 py-8 text-center text-[var(--text-secondary)]">
+                <p>&copy; 2024 Bhishan Pangeni. All rights reserved.</p>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
