@@ -25,20 +25,6 @@ This website showcases my **skills, projects, resume**, and allows visitors to *
 
 ---
 
-## 📁 Folder Structure
-```
-/portfolio-website
-│── assets/
-│   ├── css/            # Stylesheets
-│   ├── images/         # Profile & project images
-│   ├── favicon.ico     # Website icon
-│── index.html          # Main webpage
-│── resume.pdf          # Resume file
-│── README.md           # Documentation (this file)
-```
-
----
-
 ## 📩 Contact Me
 Have a project or want to connect?  
 📧 **Email:** [bhishanpangeni2003@gmail.com](mailto:bhishanpangeni2003@gmail.com)  

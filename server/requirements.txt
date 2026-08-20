@@ -1,0 +1,9 @@
+fastapi
+uvicorn
+motor
+pydantic
+python-dotenv
+pwdlib[argon2]
+python-jose[cryptography]
+python-multipart
+cloudinary
