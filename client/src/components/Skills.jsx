@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Replace with your actual backend URL in production
-    axios.get('http://localhost:8000/api/skills')
+    axios.get(`${API_URL}/api/skills`)
       .then(res => {
         setSkills(res.data);
         setLoading(false);

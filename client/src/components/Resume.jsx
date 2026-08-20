@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Resume = () => {
   const [resumeUrl, setResumeUrl] = useState(null);
   const [showViewer, setShowViewer] = useState(false);
@@ -8,7 +10,7 @@ const Resume = () => {
 
   useEffect(() => {
     // Fetch the latest resume URL
-    axios.get('http://localhost:8000/api/resume')
+    axios.get(`${API_URL}/api/resume`)
       .then(res => {
         if(res.data.url) setResumeUrl(res.data.url);
         console.log("Fetched resume URL:", res.data.url);

@@ -8,12 +8,14 @@ import ProjectCard from '../components/ProjectCard';
 import Resume from '../components/Resume';
 import Navbar from '../components/Navbar';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Home = () => {
   const [projects, setProjects] = useState([]);
 
   useEffect(() => {
     // 1. Fetch Projects
-    axios.get('http://localhost:8000/api/projects')
+    axios.get(`${API_URL}/api/projects`)
       .then(res => setProjects(res.data))
       .catch(err => console.error("Error fetching projects:", err));
   }, []);

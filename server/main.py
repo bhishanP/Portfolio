@@ -24,7 +24,7 @@ app = FastAPI()
 # Allow your React app to talk to this backend
 origins = [
     "http://localhost:5173",  # Local React
-    "https://your-frontend-url.vercel.app" # Production React
+    "https://bhishanpangeni.com.np,"
 ]
 
 app.add_middleware(

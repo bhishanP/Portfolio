@@ -2,6 +2,8 @@ import { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 // --- Icons ---
 const UploadIcon = () => <svg className="w-6 h-6 mb-2 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>;
 const LogoutIcon = () => <svg className="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>;
@@ -49,21 +51,21 @@ const Admin = () => {
   // --- Fetch Functions ---
   const fetchProjects = async () => {
     try {
-        const res = await axios.get('http://localhost:8000/api/projects');
+        const res = await axios.get(`${API_URL}/api/projects`);
         setProjects(res.data);
     } catch (err) { console.error("Error fetching projects", err); }
   };
 
   const fetchResume = async () => {
     try {
-      const res = await axios.get('http://localhost:8000/api/resume');
+      const res = await axios.get(`${API_URL}/api/resume`);
       setCurrentResume(res.data.url);
     } catch (err) { console.error("Error fetching resume", err); }
   };
 
   const fetchSkills = async () => {
     try {
-        const res = await axios.get('http://localhost:8000/api/skills');
+        const res = await axios.get(`${API_URL}/api/skills`);
         // Backend returns items as array, we convert to string for the textarea
         const formattedSkills = res.data.map(s => ({
             category: s.category,
@@ -99,7 +101,7 @@ const Admin = () => {
             items: s.itemsString.split(',').map(i => i.trim()).filter(i => i)
         }));
         
-        await axios.post('http://localhost:8000/api/skills', payload, {
+        await axios.post(`${API_URL}/api/skills`, payload, {
             headers: { Authorization: `Bearer ${token}` }
         });
         alert("Skills Saved Successfully!");
@@ -133,7 +135,7 @@ const Admin = () => {
 
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('http://localhost:8000/api/upload', data, {
+      const res = await axios.post(`${API_URL}/api/upload`, data, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       });
       if (field === 'gallery_images') {
@@ -155,7 +157,7 @@ const Admin = () => {
     setUploading(true);
     try {
       const token = localStorage.getItem('token');
-      const res = await axios.post('http://localhost:8000/api/resume', data, {
+      const res = await axios.post(`${API_URL}/api/resume`, data, {
         headers: { Authorization: `Bearer ${token}`, 'Content-Type': 'multipart/form-data' }
       });
       setCurrentResume(res.data.url);
@@ -175,14 +177,14 @@ const Admin = () => {
       const token = localStorage.getItem('token');
       if (editingProjectSlug) {
         // Update existing project
-        await axios.put(`http://localhost:8000/api/projects/${editingProjectSlug}`, payload, { 
+        await axios.put(`${API_URL}/api/projects/${editingProjectSlug}`, payload, { 
           headers: { Authorization: `Bearer ${token}` } 
         });
         alert("Project Updated!");
         handleCancelEdit();
       } else {
         // Create new project
-        await axios.post('http://localhost:8000/api/projects', payload, { 
+        await axios.post(`${API_URL}/api/projects`, payload, { 
           headers: { Authorization: `Bearer ${token}` } 
         });
         alert("Project Created!");
@@ -203,7 +205,7 @@ const Admin = () => {
     if(!window.confirm("Delete this project?")) return;
     try {
         const token = localStorage.getItem('token');
-        await axios.delete(`http://localhost:8000/api/projects/${slug}`, { headers: { Authorization: `Bearer ${token}` } });
+        await axios.delete(`${API_URL}/api/projects/${slug}`, { headers: { Authorization: `Bearer ${token}` } });
         fetchProjects();
     } catch(err) { alert("Delete failed"); }
   };

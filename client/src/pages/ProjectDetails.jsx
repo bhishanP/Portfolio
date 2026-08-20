@@ -2,14 +2,16 @@ import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const ProjectDetails = () => {
   const { slug } = useParams();
   const [project, setProject] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Replace with your Render Backend URL
-    axios.get(`http://localhost:8000/api/projects/${slug}`)
+    
+    axios.get(`${API_URL}/api/projects/${slug}`)
       .then(res => {
         setProject(res.data);
         setLoading(false);

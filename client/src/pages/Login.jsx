@@ -2,6 +2,8 @@ import { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -15,8 +17,7 @@ const Login = () => {
     formData.append('password', password);
 
     try {
-      // Replace with your Render Backend URL
-      const response = await axios.post('http://localhost:8000/token', formData);
+      const response = await axios.post(`${API_URL}/token`, formData);
       localStorage.setItem('token', response.data.access_token);
       navigate('/admin');
     } catch (err) {
