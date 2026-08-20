@@ -13,7 +13,6 @@ const Resume = () => {
     axios.get(`${API_URL}/api/resume`)
       .then(res => {
         if(res.data.url) setResumeUrl(res.data.url);
-        console.log("Fetched resume URL:", res.data.url);
         setLoading(false);
       })
       .catch(err => {
