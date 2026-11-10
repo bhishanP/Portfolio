@@ -1,22 +1,15 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_API_URL;
+import api from '../api';
 
 const Skills = () => {
   const [skills, setSkills] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get(`${API_URL}/api/skills`)
-      .then(res => {
-        setSkills(res.data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setLoading(false);
-      });
+    api.get('/api/skills')
+      .then(res => setSkills(res.data))
+      .catch(err => console.error(err))
+      .finally(() => setLoading(false));
   }, []);
 
   return (
@@ -43,15 +36,14 @@ const Skills = () => {
           
           {!loading ? (
             skills.length > 0 ? (
-              skills.map((skillGroup, index) => (
+              skills.map((skillGroup) => (
                 <div 
-                  key={index} 
+                  key={skillGroup.category} 
                   className="group bg-white rounded-2xl p-8 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
                 >
                   {/* Card Header with Icon placeholder */}
                   <div className="flex items-center gap-4 mb-6 border-b border-slate-100 pb-4">
                     <div className="w-10 h-10 rounded-lg bg-blue-50 flex items-center justify-center text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
-                      {/* Generic Icon - You can swap this based on category name if you want complex logic */}
                       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path></svg>
                     </div>
                     <h3 className="text-xl font-bold text-slate-800 group-hover:text-blue-600 transition-colors">
@@ -59,11 +51,11 @@ const Skills = () => {
                     </h3>
                   </div>
 
-                  {/* Skills Tags (The "Chips") */}
+                  {/* Skills Tags */}
                   <div className="flex flex-wrap gap-2">
-                    {skillGroup.items.map((item, i) => (
+                    {skillGroup.items.map((item) => (
                       <span 
-                        key={i} 
+                        key={item} 
                         className="px-3 py-1.5 bg-slate-50 text-slate-600 text-sm font-medium rounded-lg border border-slate-200 hover:bg-blue-50 hover:text-blue-600 hover:border-blue-200 transition-colors cursor-default"
                       >
                         {item}
