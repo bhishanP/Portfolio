@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
 import ProjectDetails from './pages/ProjectDetails';
@@ -13,6 +14,13 @@ function AppContent() {
   return (
     <>
       {!hideNavbar && <Navbar />}
+      <Toaster
+        position="top-right"
+        toastOptions={{
+          success: { duration: 3000 },
+          error: { duration: 4000 },
+        }}
+      />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/projects/:slug" element={<ProjectDetails />} />

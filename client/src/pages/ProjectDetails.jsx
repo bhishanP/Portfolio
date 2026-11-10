@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
-
-const API_URL = import.meta.env.VITE_API_URL;
+import api from '../api';
 
 const ProjectDetails = () => {
   const { slug } = useParams();
@@ -11,7 +9,7 @@ const ProjectDetails = () => {
 
   useEffect(() => {
     
-    axios.get(`${API_URL}/api/projects/${slug}`)
+    api.get(`/api/projects/${slug}`)
       .then(res => {
         setProject(res.data);
         setLoading(false);
@@ -71,7 +69,7 @@ const ProjectDetails = () => {
         <header className="text-center mb-16 relative">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-blue-50 border border-blue-100 text-blue-700 text-xs font-bold tracking-widest uppercase rounded-full mb-6 shadow-sm">
              <span className="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
-             Project Showcase
+             {project.track === 'Research' ? '🔬 Academic & AI Research' : project.track === 'Industry' ? '🏢 Industry & Production' : '✨ Research & Engineering'}
           </div>
           <h1 className="text-5xl md:text-7xl font-black text-slate-900 mb-8 tracking-tight leading-tight">
             {project.title}
@@ -87,6 +85,7 @@ const ProjectDetails = () => {
           <img 
             src={project.thumbnail_url} 
             alt={project.title} 
+            loading="eager"
             className="relative w-full h-auto rounded-2xl object-cover max-h-[700px] border border-slate-100"
           />
         </div>
@@ -111,6 +110,11 @@ const ProjectDetails = () => {
                 
                 {/* Quick Actions in Sidebar */}
                 <div className="mt-10 pt-8 border-t border-slate-800 flex flex-col gap-3">
+                   {project.paper_link && (
+                    <a href={project.paper_link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-purple-600 text-white px-4 py-3 rounded-xl hover:bg-purple-500 transition font-bold shadow-lg shadow-purple-900/50">
+                      📄 Paper / Preprint ↗
+                    </a>
+                   )}
                    {project.live_link && (
                     <a href={project.live_link} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-3 rounded-xl hover:bg-blue-500 transition font-bold shadow-lg shadow-blue-900/50">
                       Live Demo ↗
@@ -234,7 +238,7 @@ const ProjectDetails = () => {
                      {project.gallery_images.map((img, i) => (
                          <div key={i} className="group overflow-hidden rounded-2xl border border-slate-200 shadow-sm relative">
                              <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition z-10 pointer-events-none"></div>
-                             <img src={img} alt={`Gallery ${i}`} className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-700"/>
+                         <img src={img} alt={`Gallery image ${i + 1}`} loading="lazy" className="w-full h-72 object-cover transform group-hover:scale-105 transition duration-700"/>
                          </div>
                      ))}
                  </div>

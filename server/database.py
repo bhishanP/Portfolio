@@ -3,7 +3,7 @@ import os
 from dotenv import load_dotenv
 from motor.motor_asyncio import AsyncIOMotorClient
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
 MONGO_DETAILS = os.getenv("MONGO_URI")
 
@@ -14,3 +14,4 @@ project_collection = database.get_collection("projects")
 admin_collection = database.get_collection("admins")
 resume_collection = database.get_collection("resumes")
 skills_collection = database.get_collection("skills")
+profile_collection = database.get_collection("profile")

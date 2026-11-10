@@ -1,10 +1,15 @@
+import sys
+import os
+
+# Ensure server directory is always on python path whether run from root or server/
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
 from fastapi import FastAPI, HTTPException, Depends, status
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
-from models import ProjectSchema, ResumeSchema, UserLogin, SkillSchema
-from database import project_collection, admin_collection, resume_collection, skills_collection
+from models import ProjectSchema, ResumeSchema, UserLogin, SkillSchema, ProfileSchema
+from database import project_collection, admin_collection, resume_collection, skills_collection, profile_collection
 from fastapi import UploadFile, File
-import os
 from dotenv import load_dotenv
 import cloudinary
 import cloudinary.uploader
@@ -12,7 +17,7 @@ from datetime import datetime, timedelta
 from security import verify_password, create_access_token, decode_access_token
 from typing import List
 
-load_dotenv()
+load_dotenv(os.path.join(os.path.dirname(__file__), ".env"))
 
 cloudinary.config( 
   cloud_name = os.getenv("CLOUDINARY_CLOUD_NAME"), 
@@ -165,7 +170,7 @@ async def get_skills():
     return doc.get("data", [])
 
 @app.post("/api/skills")
-async def update_skills(skills: List[SkillSchema]):
+async def update_skills(skills: List[SkillSchema], username: str = Depends(verify_token)):
     # Overwrite the existing skills document
     await skills_collection.update_one(
         {"_id": "skills"},
@@ -173,3 +178,25 @@ async def update_skills(skills: List[SkillSchema]):
         upsert=True
     )
     return {"message": "Skills updated successfully"}
+
+# --- Profile / Hero Dynamic Configuration ---
+
+@app.get("/api/profile")
+async def get_profile():
+    doc = await profile_collection.find_one({"_id": "profile"})
+    if not doc:
+        # Return default schema if not set yet
+        default_profile = ProfileSchema().dict()
+        return default_profile
+    doc.pop("_id", None)
+    return doc
+
+@app.post("/api/profile")
+async def update_profile(profile: ProfileSchema, username: str = Depends(verify_token)):
+    profile_data = profile.dict()
+    await profile_collection.update_one(
+        {"_id": "profile"},
+        {"$set": profile_data},
+        upsert=True
+    )
+    return {"message": "Profile updated successfully", "profile": profile_data}
